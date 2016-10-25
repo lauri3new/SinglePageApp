@@ -18,7 +18,7 @@ When you are ready to start coding, please follow these GIT Flow procedure.
 
 - Move an issue you like to work on to "In Progress"
 - Create a local git branch on your product folder aligning with the issue that you are currently working on
-- Commit everything relates to that issue in that new branch
+- Commit & Push everything relates to that issue in that new branch
 - When you are done with that issue, create a Pull Request in GITHUB from your branch on to Master. 
 - When you are ready to pick another story, go to Master branch and create another branch aligning with the issue that you picked.
 - and so on
