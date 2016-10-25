@@ -23,6 +23,8 @@ When you are ready to start coding, please follow these GIT Flow procedure.
 - When you are ready to pick another story, go to Master branch and create another branch aligning with the issue that you picked.
 - and so on
 
+## Extra mile
+
 You are also welcome to use
 
 - Yeoman
