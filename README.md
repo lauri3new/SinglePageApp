@@ -6,7 +6,7 @@ Please use the above API to write a simple single page app in either React+Redux
 
 ## Requirements
 
-- List all users names with a link
+- List all users names' with a link
 - When I click a user it should take me to another page where it displays all the user's(current selection) post
 - When I click a post it should take me to another page where it displays all the post's(current selection) comments
 
