@@ -4,6 +4,8 @@
 
 Please use the above API to write a simple single page app in either React+Redux or Angular2 framework.
 
+Clone this repo to your local dir.
+
 ## Requirements
 
 - List all users' names with a link
