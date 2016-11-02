@@ -1,15 +1,14 @@
 import React from "react";
+import Post from "../components/post.js";
 import { connect } from "react-redux";
 import { Link, withRouter} from "react-router";
-
 import { getPosts, clearErr } from "../actions/actions.js";
-import Post from "../components/post.js";
 
+// similiar to UserList but dealing with loading/displaying posts (see userlist.js comments for explanation)
+// however uses withRouter to access params for selecting posts (using selector function) see below
 class PostList extends React.Component  {
   componentDidMount(){
-    // clear errors on reload
      this.props.clearErr();
-    // check if posts array is empty, if it is getPosts by user ID from url params
     if (this.props.posts.length === 0) {
     this.props.getPosts(this.props.params.uid);
     }
@@ -18,36 +17,35 @@ class PostList extends React.Component  {
     return(
       <div className="container">
        {this.props.posts.map((post,i) => {return <Post key={i} name={post.title} username={post.body} pid={post.id}/>})}
-        {this.props.isError ? <div className="alert alert-danger"><h3>{this.props.errMsg}</h3><button className="btn btn-warning" onClick={() => this.props.getPosts()}>Reload</button></div> : null}
+        {this.props.isError ? <div className="alert alert-danger"><h3>{this.props.errMsg}</h3><button className="btn btn-warning" onClick={() => this.props.getPosts()}>Re-try</button></div> : null}
       </div>
     )
   }
 }
 
-// selector function, selects posts based on uid
+// Selector function: filters posts in state by userId based on uid from url params
 const filterPostsByUid = (posts, uid) => {
   if (Object.keys(posts).length !== 0) {
   return posts.filter(post => post.userId == uid)
-} else {
+  } else {
   return []
-}
+  }
 }
 
+// here url params are passed so that they can be used to filter posts by userId
 const mapStateToProps = (state, { params }) => ({
     posts: filterPostsByUid(state.posts, params.uid),
     isError: state.error.isError,
     errMsg: state.error.errMsg
 });
 
-// mapDispatchToProps maps functions that use dispatch methods to this.props
-// so that they will be availble also from this.props locally
 const mapDispatchToProps = (dispatch) => ({
     getPosts(uid) {
       dispatch(getPosts(uid))
-  },
-  clearErr() {
-    dispatch(clearErr())
-  }
+    },
+    clearErr() {
+      dispatch(clearErr())
+    }
 });
 
 // connect hooks up mapStateToProps and mapDispatchToProps to named component.

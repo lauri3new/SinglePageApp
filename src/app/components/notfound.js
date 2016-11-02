@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router";
 
+// not found presentation component displayed with link to home, when route not recognised.
+
 function NotFound() {
   return (
     <div className ="container">

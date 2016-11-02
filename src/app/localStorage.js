@@ -1,3 +1,4 @@
+// try and load state from browser local storage
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
@@ -10,6 +11,7 @@ export const loadState = () => {
   }
 }
 
+// save current state to browser local storage
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);

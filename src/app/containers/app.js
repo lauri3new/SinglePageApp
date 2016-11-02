@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 
-// Root contains some in line styling and a ternary operator that renders
+// App container acts as presentation frame for app.
+// contains some in line styling and a ternary operator that renders
 // a loading bar (could be replace with a nice spinner) when state property
 // isLoading is true (for example during AJAX request).
 
@@ -47,9 +48,6 @@ let titleStyle = {
     )
 }
 
-// mapStateToProps tells React which properties of global state do we want to
-// use in this component and to which local properties do we want to map them,
-// so that they are accessible in from this.props
 const mapStateToProps = (state) => ({
     isLoading: state.isLoading
 });

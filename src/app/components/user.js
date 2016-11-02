@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 
+// User presentation component.
+
 const User = (props) => (
       <div className ="container">
         <div className ="row">

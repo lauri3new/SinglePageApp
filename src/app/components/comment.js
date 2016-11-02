@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 
+// Comment presentation component
+
 const Comment = (props) => (
     <div className ="container">
       <div className ="row">
