@@ -28,7 +28,7 @@ export function getUsers() {
     })
   .catch(function(err) {
     dispatch({
-      type: "GET_POSTS_FAILURE",
+      type: "GET_USERS_FAILURE",
       payload: err.message || "Something went wrong"
     });
   });
@@ -86,7 +86,7 @@ export function getComments(pid) {
   )
   .catch(function(err) {
     dispatch({
-      type: "GET_POSTS_FAILURE",
+      type: "GET_COMMENTS_FAILURE",
       payload: err.message || "Something went wrong"
     });
   });
