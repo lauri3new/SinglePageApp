@@ -2,8 +2,7 @@
 export function clearErr() {
   return dispatch => {
   dispatch({
-    type: "RELOAD",
-    payload: ""
+    type: "RELOAD"
   });
   }
 }
@@ -18,19 +17,9 @@ export function getUsers() {
   .then(
     function(response) {
       if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-          dispatch({
-            type: "GET_POSTS_FAILURE",
-            payload: err.message || "Something went wrong"
-          });
+        throw new Error(response.status + " " + response.statusText)
       }
-
       response.json().then(function(data) {
-        dispatch({
-          type: "LOADING",
-          payload: false
-        });
         dispatch({
           type: "GET_USERS_SUCESS",
           payload: data
@@ -38,13 +27,13 @@ export function getUsers() {
       });
     })
   .catch(function(err) {
-    console.log('Fetch Error :-S', err);
     dispatch({
       type: "GET_POSTS_FAILURE",
       payload: err.message || "Something went wrong"
     });
   });
-}};
+  }
+}
 
 // fetch posts
 export function getPosts(uid) {
@@ -56,14 +45,8 @@ export function getPosts(uid) {
   .then(
     function(response) {
       if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-          dispatch({
-            type: "GET_POSTS_FAILURE",
-            payload: err.message || "Something went wrong"
-          });
+        throw new Error(response.status + " " + response.statusText)
       }
-
       response.json().then(function(data) {
         dispatch({
           type: "GET_POSTS_SUCESS",
@@ -73,47 +56,27 @@ export function getPosts(uid) {
     }
   )
   .catch(function(err) {
-    console.log('Fetch Error :-S', err);
     dispatch({
       type: "GET_POSTS_FAILURE",
       payload: err.message || "Something went wrong"
     });
   });
-    }
+  }
 }
 
 // fetch comments
 export function getComments(pid) {
   return dispatch => {
     dispatch({
-      type: "GET_COMMENTS_REQUEST",
-      payload: []
-    });
-    dispatch({
-      type: "LOADING",
-      payload: true
+      type: "GET_COMMENTS_REQUEST"
     });
     fetch('https://jsonplaceholder.typicode.com/comments?postId=' + pid)
   .then(
     function(response) {
       if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-          dispatch({
-            type: "LOADING",
-            payload: false
-          });
-        dispatch({
-          type: "GET_COMMENTS_FAILURE",
-          payload: "error"
-        });
+        throw new Error(response.status + " " + response.statusText)
       }
-
       response.json().then(function(data) {
-        dispatch({
-          type: "LOADING",
-          payload: false
-        });
         dispatch({
           type: "GET_COMMENTS_SUCESS",
           payload: data
@@ -122,14 +85,9 @@ export function getComments(pid) {
     }
   )
   .catch(function(err) {
-    console.log('Fetch Error :-S', err);
     dispatch({
-      type: "LOADING",
-      payload: false
-    });
-    dispatch({
-      type: "GET_COMMENTS_FAILURE",
-      payload: "error"
+      type: "GET_POSTS_FAILURE",
+      payload: err.message || "Something went wrong"
     });
   });
   }
