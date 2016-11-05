@@ -6,14 +6,28 @@ export function clearErr() {
   });
   }
 }
-
-// fetch users
-export function getUsers() {
-  return dispatch => {
+// get users
+export const getUsers = () => {
+  return getData("USERS", "users")
+}
+// get posts
+export const getPosts = (uid) => {
+  let path = "posts?userId=" + uid;
+  return getData("POSTS", path)
+}
+// get comments
+export const getComments = (pid) => {
+  let path = "comments?postId=" + pid;
+  return getData("COMMENTS", path)
+}
+// fetch data
+const getData = (type, path) => {
+  let baseUrl = "https://jsonplaceholder.typicode.com/";
+  return (dispatch) => {
     dispatch({
-      type: "GET_USERS_REQUEST"
+      type: `GET_REQUEST`
     });
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch(baseUrl + path)
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -21,72 +35,14 @@ export function getUsers() {
       }
       response.json().then(function(data) {
         dispatch({
-          type: "GET_USERS_SUCESS",
+          type: `GET_${type}_SUCESS`,
           payload: data
         });
       });
     })
   .catch(function(err) {
     dispatch({
-      type: "GET_USERS_FAILURE",
-      payload: err.message || "Something went wrong"
-    });
-  });
-  }
-}
-
-// fetch posts
-export function getPosts(uid) {
-  return dispatch => {
-    dispatch({
-      type: "GET_POSTS_REQUEST"
-    });
-    fetch('https://jsonplaceholder.typicode.com/posts?userId=' + uid)
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        throw new Error(response.status + " " + response.statusText)
-      }
-      response.json().then(function(data) {
-        dispatch({
-          type: "GET_POSTS_SUCESS",
-          payload: data
-        });
-      });
-    }
-  )
-  .catch(function(err) {
-    dispatch({
-      type: "GET_POSTS_FAILURE",
-      payload: err.message || "Something went wrong"
-    });
-  });
-  }
-}
-
-// fetch comments
-export function getComments(pid) {
-  return dispatch => {
-    dispatch({
-      type: "GET_COMMENTS_REQUEST"
-    });
-    fetch('https://jsonplaceholder.typicode.com/comments?postId=' + pid)
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        throw new Error(response.status + " " + response.statusText)
-      }
-      response.json().then(function(data) {
-        dispatch({
-          type: "GET_COMMENTS_SUCESS",
-          payload: data
-        });
-      });
-    }
-  )
-  .catch(function(err) {
-    dispatch({
-      type: "GET_COMMENTS_FAILURE",
+      type: `GET_REQEST_FAILURE`,
       payload: err.message || "Something went wrong"
     });
   });
