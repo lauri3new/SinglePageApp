@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "../components/comment.js";
+import Rowtainer from "../components/rowtainer.js";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router";
 import { getComments, clearErr } from "../actions/actions.js";
@@ -15,7 +16,7 @@ class CommentList extends React.Component  {
   render() {
     return(
       <div className="container">
-        {this.props.comments.map((comment,i) => {return <Comment key={i} cid={comment.id} name={comment.name} body={comment.body} email={comment.email} />})}
+        {this.props.comments.map((comment,i) => {return <Rowtainer key={i}><Comment cid={comment.id} name={comment.name} body={comment.body} email={comment.email} /></Rowtainer>})}
           {this.props.isError ? <div className="alert alert-danger"><h3>{this.props.errMsg}</h3><button className="btn btn-warning" onClick={() => this.props.getComments()}>Re-try</button></div> : null}
       </div>
     )

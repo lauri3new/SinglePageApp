@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "../components/post.js";
+import Rowtainer from "../components/rowtainer.js";
 import { connect } from "react-redux";
 import { Link, withRouter} from "react-router";
 import { getPosts, clearErr } from "../actions/actions.js";
@@ -16,7 +17,7 @@ class PostList extends React.Component  {
   render() {
     return(
       <div className="container">
-       {this.props.posts.map((post,i) => {return <Post key={i} name={post.title} username={post.body} pid={post.id}/>})}
+       {this.props.posts.map((post,i) => {return <Rowtainer key={i}><Post name={post.title} username={post.body} pid={post.id}/></Rowtainer>})}
         {this.props.isError ? <div className="alert alert-danger"><h3>{this.props.errMsg}</h3><button className="btn btn-warning" onClick={() => this.props.getPosts()}>Re-try</button></div> : null}
       </div>
     )
