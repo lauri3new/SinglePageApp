@@ -1,6 +1,7 @@
 import React from "react";
 import User from "../components/user.js";
 import Rowtainer from "../components/rowtainer.js";
+import ErrorAlert from "../components/erroralert.js";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { getUsers, clearErr } from "../actions/actions.js";
@@ -22,7 +23,7 @@ class UserList extends React.Component  {
     return (
       <div className="container">
        {this.props.users.map((user,i) => {return <Rowtainer key={i}><User name={user.name} username={user.username} uid={user.id}/></Rowtainer>})}
-       {this.props.isError ? <div className="alert alert-danger"><h3>{this.props.errMsg}</h3><button className="btn btn-warning" onClick={() => this.props.getUsers()}>Re-try</button></div> : null}
+       {this.props.isError ? <ErrorAlert errMsg={this.props.errMsg} onClick={() => this.props.getUsers()}/> : null}
       </div>
     )
   }

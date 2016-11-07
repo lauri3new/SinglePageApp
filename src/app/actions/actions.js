@@ -42,7 +42,7 @@ const getData = (type, path) => {
     })
   .catch(function(err) {
     dispatch({
-      type: `GET_REQEST_FAILURE`,
+      type: `GET_REQUEST_FAILURE`,
       payload: err.message || "Something went wrong"
     });
   });
