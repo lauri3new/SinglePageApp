@@ -1,5 +1,5 @@
 
-const isLoading = (state = false, action) => {
+const isLoadingReducer = (state = false, action) => {
   switch (action.type) {
     case "GET_REQUEST":
     state = true
@@ -14,4 +14,4 @@ const isLoading = (state = false, action) => {
   return state
 }
 
-export default isLoading
+export default isLoadingReducer

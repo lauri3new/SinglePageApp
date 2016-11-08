@@ -1,5 +1,5 @@
 
-const comments = (state = [], action) => {
+const commentsReducer = (state = [], action) => {
   switch (action.type) {
     case "GET_COMMENTS_SUCESS":
     return state.concat(action.payload)
@@ -8,4 +8,4 @@ const comments = (state = [], action) => {
   return state
 }
 
-export default comments
+export default commentsReducer

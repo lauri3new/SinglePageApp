@@ -1,17 +1,17 @@
 // root reducer
 
 import { combineReducers } from 'redux';
-import users from './users.js';
-import posts from './posts.js';
-import comments from './comments.js';
-import isLoading from './loading.js';
-import error from './error.js';
+import usersReducer from './users.js';
+import postsReducer from './posts.js';
+import commentsReducer from './comments.js';
+import isLoadingReducer from './loading.js';
+import errorReducer from './error.js';
 
 
 export default combineReducers({
-  users,
-  posts,
-  comments,
-  isLoading,
-  error
+  users: usersReducer,
+  posts: postsReducer,
+  comments: commentsReducer,
+  isLoading: isLoadingReducer,
+  error: errorReducer
 })

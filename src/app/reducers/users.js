@@ -1,5 +1,5 @@
 
-const users = (state = [], action) => {
+const usersReducer = (state = [], action) => {
   switch (action.type) {
     case "GET_USERS_SUCESS":
     return state.concat(action.payload)
@@ -8,4 +8,4 @@ const users = (state = [], action) => {
   return state
 }
 
-export default users
+export default usersReducer

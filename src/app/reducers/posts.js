@@ -1,5 +1,5 @@
 
-const posts = (state = [], action) => {
+const postsReducer = (state = [], action) => {
   switch (action.type) {
     case "GET_POSTS_SUCESS":
     return state.concat(action.payload)
@@ -8,4 +8,4 @@ const posts = (state = [], action) => {
   return state
 }
 
-export default posts
+export default postsReducer

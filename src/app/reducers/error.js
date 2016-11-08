@@ -3,7 +3,7 @@ const initialState = {
   errMsg: ""
 }
 
-const error = (state = initialState, action) => {
+const errorReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_REQUEST_FAILURE":
     state = {
@@ -24,4 +24,4 @@ const error = (state = initialState, action) => {
   return state
 }
 
-export default error
+export default errorReducer
