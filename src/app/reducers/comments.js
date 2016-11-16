@@ -1,7 +1,7 @@
 
 const commentsReducer = (state = [], action) => {
   switch (action.type) {
-    case "GET_COMMENTS_SUCESS":
+    case "GET_COMMENTS_SUCCESS":
     return state.concat(action.payload)
     break;
   }

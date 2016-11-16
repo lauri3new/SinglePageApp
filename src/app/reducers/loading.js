@@ -4,9 +4,9 @@ const isLoadingReducer = (state = false, action) => {
     case "GET_REQUEST":
     state = true
     break;
-    case "GET_USERS_SUCESS":
-    case "GET_POSTS_SUCESS":
-    case "GET_COMMENTS_SUCESS":
+    case "GET_USERS_SUCCESS":
+    case "GET_POSTS_SUCCESS":
+    case "GET_COMMENTS_SUCCESS":
     case "GET_REQUEST_FAILURE":
     state = false
     break;

@@ -1,11 +1,15 @@
+import fetch from 'isomorphic-fetch';
+require('es6-promise').polyfill();
 // clear error function called at componentDidMount stage to remove old errors
-export function clearErr() {
+export const clearErr = () => {
   return dispatch => {
   dispatch({
     type: "RELOAD"
   });
   }
 }
+//api base url
+const baseUrl = "https://jsonplaceholder.typicode.com/";
 // get users
 export const getUsers = () => {
   return getData("USERS", "users")
@@ -20,31 +24,39 @@ export const getComments = (pid) => {
   let path = "comments?postId=" + pid;
   return getData("COMMENTS", path)
 }
+
 // fetch data
-const getData = (type, path) => {
-  let baseUrl = "https://jsonplaceholder.typicode.com/";
+export const getData = (type, path) => {
   return (dispatch) => {
-    dispatch({
-      type: `GET_REQUEST`
-    });
-    fetch(baseUrl + path)
+    dispatch(getRequest());
+    return fetch(baseUrl + path)
   .then(
-    function(response) {
+    response => {
       if (response.status !== 200) {
         throw new Error(response.status + " " + response.statusText)
       }
-      response.json().then(function(data) {
-        dispatch({
-          type: `GET_${type}_SUCESS`,
-          payload: data
-        });
-      });
+      return response.json()
     })
+  .then( json => {
+    dispatch(getRequestSuccess(type,json));
+  })
   .catch(function(err) {
-    dispatch({
-      type: `GET_REQUEST_FAILURE`,
-      payload: err.message || "Something went wrong"
-    });
-  });
+    dispatch(getRequestFailure(err));
+  })
   }
 }
+
+// fetch request
+const getRequest = () => ({
+  type: `GET_REQUEST`
+})
+// fetch sucess
+const getRequestSuccess = (type,data) => ({
+  type: `GET_${type}_SUCCESS`,
+  payload : data
+})
+// fetch failure
+const getRequestFailure = (err) => ({
+  type: `GET_REQUEST_FAILURE`,
+  payload: err.message || "Something went wrong"
+})

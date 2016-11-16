@@ -1,5 +1,4 @@
-
-var chai = require("chai");
+import chai from 'chai';
 var expect = chai.expect;
 import usersReducer from '../reducers/users.js';
 import commentsReducer from '../reducers/comments.js';
@@ -21,7 +20,7 @@ describe('usersReducer', () => {
 
   it('returns action.payload as new state', () => {
     let action = {
-      type: "GET_USERS_SUCESS",
+      type: "GET_USERS_SUCCESS",
       payload: [{ responseKey: 'responseVal' }]
     };
     let newState = usersReducer(undefined, action);
@@ -38,7 +37,7 @@ describe('commentsReducer', () => {
 
   it('returns action.payload as new state', () => {
     let action = {
-      type: "GET_COMMENTS_SUCESS",
+      type: "GET_COMMENTS_SUCCESS",
       payload: [{ responseKey: 'responseVal' }]
     };
     let newState = commentsReducer(undefined, action);
@@ -55,7 +54,7 @@ describe('postsReducer', () => {
 
   it('returns action.payload as new state', () => {
     let action = {
-      type: "GET_POSTS_SUCESS",
+      type: "GET_POSTS_SUCCESS",
       payload: [{ responseKey: 'responseVal' }]
     };
     let newState = postsReducer(undefined, action);
